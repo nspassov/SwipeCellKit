@@ -223,7 +223,7 @@ class SwipeController: NSObject {
         actionsContainerView.addSubview(actionsView)
         
         actionsView.heightAnchor.constraint(equalTo: swipeable.heightAnchor).isActive = true
-        actionsView.widthAnchor.constraint(equalTo: swipeable.widthAnchor, multiplier: 2).isActive = true
+        actionsView.widthAnchor.constraint(equalToConstant: swipeable.bounds.size.width + actionsView.preferredWidth).isActive = true
         actionsView.topAnchor.constraint(equalTo: swipeable.topAnchor).isActive = true
         
         if orientation == .left {
@@ -291,7 +291,7 @@ class SwipeController: NSObject {
             actionsContainerView.center = CGPoint(x: targetOffset, y: actionsContainerView.center.y)
             swipeable.actionsView?.visibleWidth = abs(actionsContainerView.frame.minX)
             swipeable.layoutIfNeeded()
-        }        
+        }
     }
     
     func stopAnimatorIfNeeded() {
