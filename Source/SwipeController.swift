@@ -461,8 +461,7 @@ extension SwipeController: SwipeActionsViewDelegate {
     
     func hideSwipe(animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard var swipeable = self.swipeable, let actionsContainerView = self.actionsContainerView else { return }
-        guard swipeable.state == .left || swipeable.state == .right else { return }
-        guard let actionView = swipeable.actionsView else { return }
+        guard swipeable.state != .animatingToCenter || swipeable.state != .dragging else { return }
         
         swipeable.state = .animatingToCenter
         
@@ -479,6 +478,7 @@ extension SwipeController: SwipeActionsViewDelegate {
             reset()
         }
         
+        guard let actionView = swipeable.actionsView else { return }
         delegate?.swipeController(self, didEndEditingSwipeableFor: actionView.orientation)
     }
     
