@@ -345,10 +345,6 @@ class SwipeController: NSObject {
 extension SwipeController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == tapGestureRecognizer {
-            if UIAccessibility.isVoiceOverRunning {
-                scrollView?.hideSwipeables()
-            }
-            
             let swipedCell = scrollView?.swipeables.first(where: {
                 $0.state.isActive ||
                     $0.panGestureRecognizer.state == .began ||
