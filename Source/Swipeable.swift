@@ -23,6 +23,7 @@ protocol Swipeable {
     var panGestureRecognizer: UIGestureRecognizer { get }
 }
 
+extension SwipeView: Swipeable {}
 extension SwipeTableViewCell: Swipeable {}
 extension SwipeCollectionViewCell: Swipeable {}
 
