@@ -27,6 +27,13 @@ extension SwipeView: Swipeable {}
 extension SwipeTableViewCell: Swipeable {}
 extension SwipeCollectionViewCell: Swipeable {}
 
+protocol SwipeRecognizable: UIScrollView {
+    var panGestureRecognizer: UIPanGestureRecognizer { get }
+}
+
+extension UICollectionView: SwipeRecognizable {}
+extension UITableView: SwipeRecognizable {}
+
 enum SwipeState: Int {
     case center = 0
     case left

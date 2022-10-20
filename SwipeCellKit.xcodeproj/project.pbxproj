@@ -33,6 +33,7 @@
 		F8C252E028FD57FF0076C8AB /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252DF28FD57FF0076C8AB /* SwipeView.swift */; };
 		F8C252E228FD58C80076C8AB /* SwipeView+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */; };
 		F8C252E428FD58D80076C8AB /* SwipeView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */; };
+		F8C252E729016AB20076C8AB /* SwipeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		F8C252DF28FD57FF0076C8AB /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipeView+Display.swift"; sourceTree = "<group>"; };
 		F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipeView+Accessibility.swift"; sourceTree = "<group>"; };
+		F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				F8C252DF28FD57FF0076C8AB /* SwipeView.swift */,
 				F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */,
 				F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */,
+				F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */,
 			);
 			name = SwipeView;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				B93ECA9B1EDEEABA00AE05AD /* SwipeOptions.swift in Sources */,
 				11D4999D20B0D65400A1F4E7 /* SwipeController.swift in Sources */,
 				B93ECA991EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift in Sources */,
+				F8C252E729016AB20076C8AB /* SwipeViewDelegate.swift in Sources */,
 				3FD016DF1E6D778700B54FFC /* SwipeExpanding.swift in Sources */,
 				170BCE721E8340C000F46E18 /* SwipeAnimator.swift in Sources */,
 				F8C252E028FD57FF0076C8AB /* SwipeView.swift in Sources */,

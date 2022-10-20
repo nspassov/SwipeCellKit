@@ -37,42 +37,36 @@ extension SwipeView {
 }
 
 extension SwipeView {
-//    /// :nodoc:
-//    open override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
-//        get {
-//            guard let tableView = tableView, let indexPath = tableView.indexPath(for: self) else {
-//                return super.accessibilityCustomActions
-//            }
-//
-//            let leftActions = delegate?.tableView(tableView, editActionsForRowAt: indexPath, for: .left) ?? []
-//            let rightActions = delegate?.tableView(tableView, editActionsForRowAt: indexPath, for: .right) ?? []
-//
-//            let actions = [rightActions.first, leftActions.first].compactMap({ $0 }) + rightActions.dropFirst() + leftActions.dropFirst()
-//
-//            if actions.count > 0 {
-//                return actions.compactMap({ SwipeAccessibilityCustomAction(action: $0,
-//                                                                           indexPath: indexPath,
-//                                                                           target: self,
-//                                                                           selector: #selector(performAccessibilityCustomAction(accessibilityCustomAction:))) })
-//            } else {
-//                return super.accessibilityCustomActions
-//            }
-//        }
-//
-//        set {
-//            super.accessibilityCustomActions = newValue
-//        }
-//    }
+    /// :nodoc:
+    open override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+        get {
+            let leftActions = delegate?.swipeView(self, editActionsForSwipeableFor: .left) ?? []
+            let rightActions = delegate?.swipeView(self, editActionsForSwipeableFor: .right) ?? []
+
+            let actions = [rightActions.first, leftActions.first].compactMap({ $0 }) + rightActions.dropFirst() + leftActions.dropFirst()
+
+            if actions.count > 0 {
+                return actions.compactMap({ SwipeAccessibilityCustomAction(action: $0,
+                                                                           indexPath: IndexPath(),
+                                                                           target: self,
+                                                                           selector: #selector(performAccessibilityCustomAction(accessibilityCustomAction:))) })
+            } else {
+                return super.accessibilityCustomActions
+            }
+        }
+
+        set {
+            super.accessibilityCustomActions = newValue
+        }
+    }
 
     @objc func performAccessibilityCustomAction(accessibilityCustomAction: SwipeAccessibilityCustomAction) -> Bool {
-        guard let tableView = tableView else { return false }
-
         let swipeAction = accessibilityCustomAction.action
 
         swipeAction.handler?(swipeAction, accessibilityCustomAction.indexPath)
 
         if swipeAction.style == .destructive {
-            tableView.deleteRows(at: [accessibilityCustomAction.indexPath], with: .fade)
+            removeFromSuperview()
         }
 
         return true
