@@ -69,9 +69,8 @@ open class SwipeView: UIView {
         swipeController.delegate = self
     }
 
-    /// :nodoc:
-    override open func didMoveToSuperview() {
-        super.didMoveToSuperview()
+    override open  func didMoveToWindow() {
+        super.didMoveToWindow()
 
         var view: UIView = self
         while let superview = view.superview {
@@ -83,7 +82,7 @@ open class SwipeView: UIView {
                 swipeController.scrollView = swipeRecognizer
 
                 swipeRecognizer.panGestureRecognizer.removeTarget(self, action: nil)
-                swipeRecognizer.panGestureRecognizer.addTarget(self, action: #selector(handleTablePan(gesture:)))
+                swipeRecognizer.panGestureRecognizer.addTarget(self, action: #selector(handlePan(gesture:)))
                 return
             }
         }
@@ -95,20 +94,15 @@ open class SwipeView: UIView {
 
         let point = convert(point, to: superview)
 
-//        if !UIAccessibility.isVoiceOverRunning {
-//            for cell in tableView?.swipeCells ?? [] {
-//                if (cell.state == .left || cell.state == .right) && !cell.contains(point: point) {
-//                    tableView?.hideSwipeCell()
-//                    return false
-//                }
-//            }
-//        }
+        if !UIAccessibility.isVoiceOverRunning {
+            swipeRecognizer?.hideSwipeables()
+        }
 
         return contains(point: point)
     }
 
     func contains(point: CGPoint) -> Bool {
-        return point.y > frame.minY && point.y < frame.maxY
+        return frame.contains(point)
     }
 
     /// :nodoc:
@@ -123,7 +117,7 @@ open class SwipeView: UIView {
         swipeController.traitCollectionDidChange(from: previousTraitCollection, to: self.traitCollection)
     }
 
-    @objc func handleTablePan(gesture: UIPanGestureRecognizer) {
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
         if gesture.state == .began {
             hideSwipe(animated: true)
         }
