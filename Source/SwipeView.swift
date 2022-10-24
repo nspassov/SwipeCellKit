@@ -95,7 +95,12 @@ open class SwipeView: UIView {
         let point = convert(point, to: superview)
 
         if !UIAccessibility.isVoiceOverRunning {
-            swipeRecognizer?.hideSwipeables()
+            for cell in swipeRecognizer?.swipeables ?? [] {
+                if (cell.state == .left || cell.state == .right) && !cell.contains(point: point) {
+                    swipeRecognizer?.hideSwipeables()
+                    return false
+                }
+            }
         }
 
         return contains(point: point)
@@ -103,6 +108,17 @@ open class SwipeView: UIView {
 
     func contains(point: CGPoint) -> Bool {
         return frame.contains(point)
+    }
+
+    /// :nodoc:
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard
+            let actionsView = actionsView,
+            isHidden == false
+        else { return super.hitTest(point, with: event) }
+
+        let modifiedPoint = actionsView.convert(point, from: self)
+        return actionsView.hitTest(modifiedPoint, with: event) ?? super.hitTest(point, with: event)
     }
 
     /// :nodoc:

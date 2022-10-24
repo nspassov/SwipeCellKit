@@ -11,16 +11,13 @@ import UIKit
 
 protocol Swipeable {
     var state: SwipeState { get set }
-
     var actionsView: SwipeActionsView? { get set }
-
     var frame: CGRect { get }
-
     var scrollView: UIScrollView? { get }
-
     var indexPath: IndexPath? { get }
-
     var panGestureRecognizer: UIGestureRecognizer { get }
+
+    func contains(point: CGPoint) -> Bool
 }
 
 extension SwipeView: Swipeable {}

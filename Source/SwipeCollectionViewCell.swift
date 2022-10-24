@@ -144,7 +144,12 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
         let point = convert(point, to: superview)
         
         if !UIAccessibility.isVoiceOverRunning {
-            collectionView?.hideSwipeables()
+            for cell in collectionView?.swipeables ?? [] {
+                if (cell.state == .left || cell.state == .right) && !cell.contains(point: point) {
+                    collectionView?.hideSwipeables()
+                    return false
+                }
+            }
         }
         
         return contains(point: point)

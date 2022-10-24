@@ -124,7 +124,12 @@ open class SwipeTableViewCell: UITableViewCell {
         let point = convert(point, to: superview)
 
         if !UIAccessibility.isVoiceOverRunning {
-            tableView?.hideSwipeables()
+            for cell in tableView?.swipeables ?? [] {
+                if (cell.state == .left || cell.state == .right) && !cell.contains(point: point) {
+                    tableView?.hideSwipeables()
+                    return false
+                }
+            }
         }
         
         return contains(point: point)
