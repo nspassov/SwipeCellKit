@@ -11,7 +11,7 @@ extension UITableView {
     var swipeCells: [SwipeTableViewCell] {
         return visibleCells.compactMap({ $0 as? SwipeTableViewCell })
     }
-    
+
     func hideSwipeCell() {
         swipeCells.forEach { $0.hideSwipe(animated: true) }
     }
@@ -21,15 +21,15 @@ extension UICollectionView {
     var swipeCells: [SwipeCollectionViewCell] {
         return visibleCells.compactMap({ $0 as? SwipeCollectionViewCell })
     }
-    
+
     func hideSwipeCell() {
         swipeCells.forEach { $0.hideSwipe(animated: true) }
     }
-    
+
     func setGestureEnabled(_ enabled: Bool) {
         gestureRecognizers?.forEach {
             guard $0 != panGestureRecognizer else { return }
-            
+
             $0.isEnabled = enabled
         }
     }
@@ -37,17 +37,19 @@ extension UICollectionView {
 
 extension UIScrollView {
     var swipeables: [Swipeable] {
+        let swipeViews = findSwipeViews()
         switch self {
         case let tableView as UITableView:
-            return tableView.swipeCells
+            return tableView.swipeCells + swipeViews
         case let collectionView as UICollectionView:
-            return collectionView.swipeCells
+            return collectionView.swipeCells + swipeViews
         default:
             return []
         }
     }
-    
+
     func hideSwipeables() {
+        findSwipeViews().forEach { $0.hideSwipe(animated: true) }
         switch self {
         case let tableView as UITableView:
             tableView.hideSwipeCell()
@@ -56,6 +58,14 @@ extension UIScrollView {
         default:
             return
         }
+    }
+
+
+}
+
+extension UIView {
+    func findSwipeViews() -> [SwipeView] {
+        return subviews.compactMap { $0 as? SwipeView } + subviews.flatMap { $0.findSwipeViews() }
     }
 }
 
@@ -66,11 +76,11 @@ extension UIPanGestureRecognizer {
         guard let sourceView = self.view else {
             return translation
         }
-        
+
         let updatedCenter = CGPoint(x: center.x + translation.x, y: center.y + translation.y)
         let distanceFromCenter = CGSize(width: abs(updatedCenter.x - sourceView.bounds.midX),
                                         height: abs(updatedCenter.y - sourceView.bounds.midY))
-        
+
         let inverseRatio = 1.0 - ratio
         let scale: (x: CGFloat, y: CGFloat) = (updatedCenter.x < sourceView.bounds.midX ? -1 : 1, updatedCenter.y < sourceView.bounds.midY ? -1 : 1)
         let x = updatedCenter.x - (distanceFromCenter.width > limit.width ? inverseRatio * (distanceFromCenter.width - limit.width) * scale.x : 0)

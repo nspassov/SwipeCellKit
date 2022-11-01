@@ -30,6 +30,10 @@
 		B93ECA951EDEE8A700AE05AD /* SwipeCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93ECA941EDEE8A700AE05AD /* SwipeCollectionViewCellDelegate.swift */; };
 		B93ECA991EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93ECA981EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift */; };
 		B93ECA9B1EDEEABA00AE05AD /* SwipeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93ECA9A1EDEEABA00AE05AD /* SwipeOptions.swift */; };
+		F8C252E028FD57FF0076C8AB /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252DF28FD57FF0076C8AB /* SwipeView.swift */; };
+		F8C252E228FD58C80076C8AB /* SwipeView+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */; };
+		F8C252E428FD58D80076C8AB /* SwipeView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */; };
+		F8C252E729016AB20076C8AB /* SwipeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		B93ECA941EDEE8A700AE05AD /* SwipeCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
 		B93ECA981EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeAccessibilityCustomAction.swift; sourceTree = "<group>"; };
 		B93ECA9A1EDEEABA00AE05AD /* SwipeOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeOptions.swift; sourceTree = "<group>"; };
+		F8C252DF28FD57FF0076C8AB /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipeView+Display.swift"; sourceTree = "<group>"; };
+		F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipeView+Accessibility.swift"; sourceTree = "<group>"; };
+		F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,14 +102,9 @@
 				170BCE711E8340C000F46E18 /* SwipeAnimator.swift */,
 				B93ECA981EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift */,
 				11D4999C20B0D65400A1F4E7 /* SwipeController.swift */,
-				3F234AD21E44A94F00E22A38 /* SwipeTableViewCell.swift */,
-				3FA78CA01E5A5A0B00A1D8FF /* SwipeTableViewCell+Accessibility.swift */,
-				3F6433D91EA53AC3008B1D48 /* SwipeTableViewCell+Display.swift */,
-				3F3ED7111E48AF37009DD5D8 /* SwipeTableViewCellDelegate.swift */,
-				B93ECA8E1EDEE80700AE05AD /* SwipeCollectionViewCell.swift */,
-				B93ECA901EDEE87800AE05AD /* SwipeCollectionViewCell+Accessibility.swift */,
-				B93ECA921EDEE88800AE05AD /* SwipeCollectionViewCell+Display.swift */,
-				B93ECA941EDEE8A700AE05AD /* SwipeCollectionViewCellDelegate.swift */,
+				F8C252DE28FD56BB0076C8AB /* SwipeView */,
+				F8C252DC28FD56940076C8AB /* SwipeTableViewCell */,
+				F8C252DD28FD56A50076C8AB /* SwipeCollectionViewCell */,
 				3FD0166F1E696D8D00B54FFC /* SwipeTransitionLayout.swift */,
 				B93ECA9A1EDEEABA00AE05AD /* SwipeOptions.swift */,
 				3F234AD41E44A94F00E22A38 /* SwipeActionsView.swift */,
@@ -124,6 +127,39 @@
 				3F234AC71E44A7A400E22A38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8C252DC28FD56940076C8AB /* SwipeTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3F234AD21E44A94F00E22A38 /* SwipeTableViewCell.swift */,
+				3FA78CA01E5A5A0B00A1D8FF /* SwipeTableViewCell+Accessibility.swift */,
+				3F6433D91EA53AC3008B1D48 /* SwipeTableViewCell+Display.swift */,
+				3F3ED7111E48AF37009DD5D8 /* SwipeTableViewCellDelegate.swift */,
+			);
+			name = SwipeTableViewCell;
+			sourceTree = "<group>";
+		};
+		F8C252DD28FD56A50076C8AB /* SwipeCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B93ECA8E1EDEE80700AE05AD /* SwipeCollectionViewCell.swift */,
+				B93ECA901EDEE87800AE05AD /* SwipeCollectionViewCell+Accessibility.swift */,
+				B93ECA921EDEE88800AE05AD /* SwipeCollectionViewCell+Display.swift */,
+				B93ECA941EDEE8A700AE05AD /* SwipeCollectionViewCellDelegate.swift */,
+			);
+			name = SwipeCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		F8C252DE28FD56BB0076C8AB /* SwipeView */ = {
+			isa = PBXGroup;
+			children = (
+				F8C252DF28FD57FF0076C8AB /* SwipeView.swift */,
+				F8C252E328FD58D80076C8AB /* SwipeView+Accessibility.swift */,
+				F8C252E128FD58C70076C8AB /* SwipeView+Display.swift */,
+				F8C252E629016AB20076C8AB /* SwipeViewDelegate.swift */,
+			);
+			name = SwipeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +245,7 @@
 				3F234AD81E44A94F00E22A38 /* SwipeActionsView.swift in Sources */,
 				3F234AD71E44A94F00E22A38 /* SwipeAction.swift in Sources */,
 				3F3ED7101E486993009DD5D8 /* SwipeActionButton.swift in Sources */,
+				F8C252E428FD58D80076C8AB /* SwipeView+Accessibility.swift in Sources */,
 				B93ECA931EDEE88800AE05AD /* SwipeCollectionViewCell+Display.swift in Sources */,
 				3F234AD61E44A94F00E22A38 /* SwipeTableViewCell.swift in Sources */,
 				3F19AD041E8D711C006B4B3A /* SwipeFeedback.swift in Sources */,
@@ -220,12 +257,15 @@
 				3F4C721D1E7E8BC20097399A /* SwipeExpansionStyle.swift in Sources */,
 				B93ECA911EDEE87800AE05AD /* SwipeCollectionViewCell+Accessibility.swift in Sources */,
 				3F3ED7121E48AF37009DD5D8 /* SwipeTableViewCellDelegate.swift in Sources */,
+				F8C252E228FD58C80076C8AB /* SwipeView+Display.swift in Sources */,
 				3FD016E11E6D7F7700B54FFC /* SwipeActionTransitioning.swift in Sources */,
 				B93ECA9B1EDEEABA00AE05AD /* SwipeOptions.swift in Sources */,
 				11D4999D20B0D65400A1F4E7 /* SwipeController.swift in Sources */,
 				B93ECA991EDEE93D00AE05AD /* SwipeAccessibilityCustomAction.swift in Sources */,
+				F8C252E729016AB20076C8AB /* SwipeViewDelegate.swift in Sources */,
 				3FD016DF1E6D778700B54FFC /* SwipeExpanding.swift in Sources */,
 				170BCE721E8340C000F46E18 /* SwipeAnimator.swift in Sources */,
+				F8C252E028FD57FF0076C8AB /* SwipeView.swift in Sources */,
 				3F6433DA1EA53AC3008B1D48 /* SwipeTableViewCell+Display.swift in Sources */,
 				3F234AD91E44A94F00E22A38 /* Extensions.swift in Sources */,
 			);
