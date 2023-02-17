@@ -150,7 +150,9 @@ class SwipeController: NSObject {
             if swipeable.state.isActive == false && swipeable.bounds.midX == target.center.x  {
                 return
             }
-            
+
+            // velocity for final states is always 0. Changed to translation
+            let velocity = gesture.translation(in: target)
             swipeable.state = targetState(forVelocity: velocity)
             
             if actionsView.expanded == true, let expandedAction = actionsView.expandableAction  {
