@@ -69,7 +69,7 @@ open class SwipeView: UIView {
         swipeController.delegate = self
     }
 
-    override open  func didMoveToWindow() {
+    override open func didMoveToWindow() {
         super.didMoveToWindow()
 
         var view: UIView = self
@@ -84,6 +84,21 @@ open class SwipeView: UIView {
                 swipeRecognizer.panGestureRecognizer.removeTarget(self, action: nil)
                 swipeRecognizer.panGestureRecognizer.addTarget(self, action: #selector(handlePan(gesture:)))
                 return
+            }
+        }
+    }
+
+    /// :nodoc:
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        if state.isActive {
+            switch state {
+            case .left:
+                swipeController.showSwipe(orientation: .left, animated: false)
+            case .right:
+                swipeController.showSwipe(orientation: .right, animated: false)
+            case .animatingToCenter, .center, .dragging:
+                break
             }
         }
     }
