@@ -137,16 +137,7 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
     /// :nodoc:
     override open func layoutSubviews() {
         super.layoutSubviews()
-        if state.isActive {
-            switch state {
-            case .left:
-                swipeController.showSwipe(orientation: .left, animated: false)
-            case .right:
-                swipeController.showSwipe(orientation: .right, animated: false)
-            case .animatingToCenter, .center, .dragging:
-                break
-            }
-        }
+        swipeController.restoreActiveState()
     }
     
     // Override so we can accept touches anywhere within the cell's original frame.

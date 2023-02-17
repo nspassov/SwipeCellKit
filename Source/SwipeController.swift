@@ -341,6 +341,19 @@ class SwipeController: NSObject {
         swipeable?.actionsView?.removeFromSuperview()
         swipeable?.actionsView = nil
     }
+
+    /// Restoring active swiped state after `layoutSubviews`.
+    func restoreActiveState() {
+        guard let state = swipeable?.state, state.isActive else { return }
+        switch state {
+        case .left:
+            showSwipe(orientation: .left, animated: false)
+        case .right:
+            showSwipe(orientation: .right, animated: false)
+        case .animatingToCenter, .center, .dragging:
+            break
+        }
+    }
     
 }
 
