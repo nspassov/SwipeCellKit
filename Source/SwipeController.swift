@@ -150,7 +150,9 @@ class SwipeController: NSObject {
             if swipeable.state.isActive == false && swipeable.bounds.midX == target.center.x  {
                 return
             }
-            
+
+            // velocity for final states is always 0. Changed to translation
+            let velocity = gesture.translation(in: target)
             swipeable.state = targetState(forVelocity: velocity)
             
             if actionsView.expanded == true, let expandedAction = actionsView.expandableAction  {
@@ -339,6 +341,19 @@ class SwipeController: NSObject {
         swipeable?.actionsView?.removeFromSuperview()
         swipeable?.actionsView = nil
     }
+
+    /// Restoring active swiped state after `layoutSubviews`.
+    func restoreActiveState() {
+        guard let state = swipeable?.state, state.isActive else { return }
+        switch state {
+        case .left:
+            showSwipe(orientation: .left, animated: false)
+        case .right:
+            showSwipe(orientation: .right, animated: false)
+        case .animatingToCenter, .center, .dragging:
+            break
+        }
+    }
     
 }
 
@@ -508,8 +523,6 @@ extension SwipeController: SwipeActionsViewDelegate {
             guard showActionsView(for: orientation) else { return }
             
             scrollView?.hideSwipeables()
-            
-            swipeable.state = targetState
         }
         
         let maxOffset = min(swipeable.bounds.width, abs(offset)) * orientation.scale * -1
@@ -517,9 +530,11 @@ extension SwipeController: SwipeActionsViewDelegate {
         
         if animated {
             animate(toOffset: targetCenter) { complete in
+                swipeable.state = targetState
                 completion?(complete)
             }
         } else {
+            swipeable.state = targetState
             actionsContainerView.center.x = targetCenter
             swipeable.actionsView?.visibleWidth = abs(actionsContainerView.frame.minX)
         }

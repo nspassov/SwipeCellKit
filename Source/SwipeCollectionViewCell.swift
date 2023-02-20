@@ -133,6 +133,12 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
             reset()
         }
     }
+
+    /// :nodoc:
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        swipeController.restoreActiveState()
+    }
     
     // Override so we can accept touches anywhere within the cell's original frame.
     // This is required to detect touches on the `SwipeActionsView` sitting alongside the

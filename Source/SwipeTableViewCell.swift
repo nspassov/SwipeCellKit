@@ -104,6 +104,12 @@ open class SwipeTableViewCell: UITableViewCell {
             }
         }
     }
+
+    /// :nodoc:
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        swipeController.restoreActiveState()
+    }
     
     /// :nodoc:
     override open func setEditing(_ editing: Bool, animated: Bool) {

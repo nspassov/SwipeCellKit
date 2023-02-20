@@ -69,7 +69,7 @@ open class SwipeView: UIView {
         swipeController.delegate = self
     }
 
-    override open  func didMoveToWindow() {
+    override open func didMoveToWindow() {
         super.didMoveToWindow()
 
         var view: UIView = self
@@ -86,6 +86,12 @@ open class SwipeView: UIView {
                 return
             }
         }
+    }
+
+    /// :nodoc:
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        swipeController.restoreActiveState()
     }
 
     /// :nodoc:
