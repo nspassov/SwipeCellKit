@@ -113,7 +113,7 @@ open class SwipeView: UIView {
     }
 
     func contains(point: CGPoint) -> Bool {
-        return frame.contains(point)
+        return point.y > frame.minY && point.y < frame.maxY
     }
 
     /// :nodoc:
