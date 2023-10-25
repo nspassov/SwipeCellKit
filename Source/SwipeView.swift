@@ -149,6 +149,10 @@ open class SwipeView: UIView {
         swipeController.reset()
         clipsToBounds = false
     }
+    
+    open func setPanGesture(isEnabled: Bool) {
+        swipeController.panGestureRecognizer.isEnabled = isEnabled
+    }
 }
 
 extension SwipeView: SwipeControllerDelegate {
